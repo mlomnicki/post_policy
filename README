@@ -1,0 +1,43 @@
+= PostPolicy: Postfix Policy Server in Ruby
+
+PostPolicy uses ACL system, which allow administrators to create rules based on mail source. 
+Unlike simple Postfix policy restrictions in PostPolicy one can create very complex rules against incoming mail.
+PostPolicy is built on top of eventmachine, event-driven network library used for critical networked applications.
+
+<b>PostPolicy is under heavy development so don't expect too much at the moment ;)</b>
+
+== DEPENDENCIES
+
+* eventmachine
+* rpsec (only for tests)
+
+== USAGE 
+
+Configure postpolicy in /etc/postpolicy.yml
+
+Read http://www.postfix.org/SMTPD_POLICY_README.html
+
+append to your master.cf
+
+    policy  unix  -   n   n   -   0   spawn   user=nobody argv=/path/to/postpolicy
+
+in your main.cf
+    
+    smtpd_recipient_restrictions = 
+        ...
+        reject_unauth_destination
+        check_policy_service unix:private/policy
+
+== ABOUT
+
+Author::    Michał Łomnicki <michal@lomnicki.com.pl>
+License::   Copyright 2009 by Michał Łomnicki
+            Released under a MIT license.
+
+== Warranty 
+
+This software is provided "as is" and without any express or
+implied warranties, including, without limitation, the implied
+warranties of merchantibility and fitness for a particular
+purpose.
+

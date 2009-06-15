@@ -1,0 +1,11 @@
+acl: 
+  foo: 
+    sender: michal@lomnicki.com.pl
+
+action: 
+  pass: REJECT
+
+access:
+  pass: foo 
+
+    

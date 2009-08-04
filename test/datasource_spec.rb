@@ -6,19 +6,19 @@ BAD_VALUES = ["michal@bar.com", "bar@baz.net", "foo@bar.baz"]
 describe PostPolicy::DataSource::Value do
 
   it "should allow passing one or multiple values" do
-    value = PostPolicy::DataSource::Value.new( 1 )
-    value.exists?( 1 ).should == true
-    value = PostPolicy::DataSource::Value.new( [1,2] )
-    value.exists?( 1 ).should == true
-    value.exists?( 2 ).should == true
+    ds = PostPolicy::DataSource::Value.new( 1 )
+    ds.exists?( 1 ).should == true
+    ds = PostPolicy::DataSource::Value.new( [1,2] )
+    ds.exists?( 1 ).should == true
+    ds.exists?( 2 ).should == true
   end
 
-  it "should match initialized values" do
-    value = PostPolicy::DataSource::Value.new( GOOD_VALUES )
-    value.exists?( GOOD_VALUES.first ).should == true
-    value.exists?( GOOD_VALUES.last ).should == true
-    value.exists?( BAD_VALUES.first ).should == false
-    value.exists?( BAD_VALUES.last ).should == false
+  it "should match initialized dss" do
+    ds = PostPolicy::DataSource::Value.new( GOOD_VALUES )
+    ds.exists?( GOOD_VALUES.first ).should == true
+    ds.exists?( GOOD_VALUES.last ).should == true
+    ds.exists?( BAD_VALUES.first ).should == false
+    ds.exists?( BAD_VALUES.last ).should == false
   end
 
 end

@@ -39,3 +39,13 @@ describe PostPolicy::DataSource::File do
   end
 
 end
+
+describe PostPolicy::DataSource::Regex do
+
+  it "should match regex" do
+    ds = PostPolicy::DataSource::Regex.new( /^michal@.*\.pl$/ )
+    ds.exists?( "michal@lomnicki.com.pl" ).should == true
+    ds.exists?( "foo@lomnicki.com.pl" ).should == false
+  end
+
+end

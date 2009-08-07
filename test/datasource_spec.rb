@@ -26,16 +26,18 @@ end
 describe PostPolicy::DataSource::File do
 
   it "should read from file" do
-    File.open( '/tmp/file_datasource', 'w' ) do |f| 
+    filename = '/tmp/file_datasource'
+    File.open( filename, 'w' ) do |f| 
       GOOD_VALUES.each { |value| f.puts value }
     end
-    ds = PostPolicy::DataSource::File.new( '/tmp/file_datasource' )
+    ds = PostPolicy::DataSource::File.new( filename )
     GOOD_VALUES.each do |value|
       ds.exists?( value ).should == true
     end
     BAD_VALUES.each do |value|
       ds.exists?( value ).should == false
     end
+    FileUtils.rm( filename ) 
   end
 
 end

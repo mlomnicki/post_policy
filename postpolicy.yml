@@ -1,6 +1,9 @@
 acl: 
   foo: 
     sender: michal@lomnicki.com.pl
+  bar:
+    sender: file:///home/michal/test/filetest
+    recipient: sql://"SELECT * FROM users WHERE login = '%l'"
 
 action: 
   pass: REJECT
@@ -8,4 +11,4 @@ action:
 access:
   pass: foo 
 
-    
+database: "dbconfig.yml"

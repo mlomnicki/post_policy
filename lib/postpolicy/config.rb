@@ -26,6 +26,21 @@ module PostPolicy
       accesses.each_pair do |action, acl|
         AccessManager << Access.new( acls[acl], actions[action] )
       end
+      Db.load( config_hash["database"] )
+    end
+
+    class Db
+      class << self
+        attr_reader :dbconfig, :dbi_params
+
+        def load( filename )
+          if filename 
+            @dbconfig = YAML.load_file( filename ).stringify_keys!.freeze
+            @dbi_params = ["DBI:#{@dbconfig[:driver]}:#{@dbconfig[:database]}", @dbconfig[:user], @dbconfig[:password]]
+          end
+        end
+
+      end
     end
 
     protected

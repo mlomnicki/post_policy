@@ -1,0 +1,6 @@
+host: localhost
+user: username
+password: secret
+driver: pg
+database: test
+

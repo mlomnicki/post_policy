@@ -44,19 +44,19 @@ module PostPolicy
     end
 
     def sender( &block )
-      @sender = Format.class_eval &block
+      @rule_sender = ACL::Sender.new( Format.class_eval( &block ) )
     end
 
     def recipient( &block )
-      @recipient = Format.class_eval &block 
+      @rule_recipient = ACL::Recipient.new( Format.class_eval( &block ) )
     end
 
     def action( value )
-      @action = value
+      @rule_action = value
     end
 
     def to_access
-      Access.new( [@sender, @recipient].compact, @action )
+      Access.new( [@rule_sender, @rule_recipient].compact, @rule_action )
     end
 
   end

@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'eventmachine'
 
+$:.unshift File.dirname( __FILE__ )
+
 require 'postpolicy/config'
 require 'postpolicy/protocol'
 require 'postpolicy/access_manager'

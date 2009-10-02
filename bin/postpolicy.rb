@@ -1,7 +1,7 @@
-require 'optparse'
+#!/usr/bin/env ruby
 
-$LOAD_PATH.unshift File.join( File.dirname( __FILE__ ), '../lib' )
-require 'postpolicy'
+require 'optparse'
+require File.join( File.dirname( __FILE__ ), '..', 'lib', 'postpolicy' )
 
 DEFAULT_CONFIG = File.exists?( '/etc/postpolicy.yml' ) ? '/etc/postpolicy.yml' : 
                       File.join( File.dirname( __FILE__ ), '../postpolicy.yml')
@@ -25,9 +25,7 @@ begin
     end
   end.parse!
 
-  VERBOSE = options[:verbose]
-
-  Logger.info( "Starting PostPolicy #{PostPolicy::VERSION::STRING}" ) if VERBOSE
+  Logger.info( "Starting PostPolicy #{PostPolicy::VERSION::STRING}"
   PostPolicy::Config.load_from_file( options[:config] )
   PostPolicy::Protocol.new.start!
 rescue

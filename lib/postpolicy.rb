@@ -8,6 +8,8 @@ require 'postpolicy/protocol'
 require 'postpolicy/access_manager'
 require 'postpolicy/logger'
 require 'postpolicy/extensions'
+require 'postpolicy/server'
+require 'postpolicy/rule'
 require 'postpolicy/version'
 
 VERBOSE = false unless defined?( VERBOSE )

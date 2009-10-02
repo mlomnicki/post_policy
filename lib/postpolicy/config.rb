@@ -36,7 +36,8 @@ module PostPolicy
         def load( filename )
           if filename 
             @dbconfig = YAML.load_file( filename ).stringify_keys!.freeze
-            @dbi_params = ["DBI:#{@dbconfig[:driver]}:#{@dbconfig[:database]}", @dbconfig[:user], @dbconfig[:password]]
+            require "do_#{@dbconfig[:driver]}"
+            @dbi_params = "#{@dbconfig[:driver]}://#{@dbconfig[:user]}:#{@dbconfig[:password]}@#{@dbconfig[:host]}:#{@dbconfig[:port]}/#{@dbconfig[:database]}"
           end
         end
 

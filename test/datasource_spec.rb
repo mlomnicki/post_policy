@@ -51,3 +51,11 @@ describe PostPolicy::DataSource::Regex do
   end
 
 end
+
+describe PostPolicy::DataSource::Sql do
+
+  it "should check in db" do
+    ds = PostPolicy::DataSource::Sql.new( "SELECT id from test" )
+  end
+
+end

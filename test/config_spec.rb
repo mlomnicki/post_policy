@@ -8,7 +8,8 @@ describe PostPolicy::Config::Db do
                 :database => 'postpolicy',
                 :user => 'foo',
                 :password => 'secret',
-                :driver => 'pg' }
+                :port => 5432,
+                :driver => 'postgres' }
 
     File.open( filename, 'w' ) do |f|
       f.puts config.to_yaml 
@@ -16,7 +17,7 @@ describe PostPolicy::Config::Db do
 
     PostPolicy::Config::Db.load( filename )
     PostPolicy::Config::Db.dbconfig.should == config
-    dbi_params = ["DBI:#{config[:driver]}:#{config[:database]}", config[:user], config[:password]]
+    dbi_params = "#{config[:driver]}://#{config[:user]}:#{config[:password]}@#{config[:host]}:#{config[:port]}/#{config[:database]}"
     PostPolicy::Config::Db.dbi_params.should == dbi_params
   
     FileUtils.rm( filename )

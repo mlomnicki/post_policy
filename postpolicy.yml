@@ -2,7 +2,7 @@ acl:
   foo: 
     sender: michal@lomnicki.com.pl
   bar:
-    sender: file:///home/michal/test/filetest
+    #sender: file:///home/michal/test/filetest
     recipient: sql://"SELECT * FROM users WHERE login = '%l'"
 
 action: 

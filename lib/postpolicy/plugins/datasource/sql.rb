@@ -12,8 +12,8 @@ module PostPolicy
         connection do |conn|
           command = conn.create_command( @query )
           reader = command.execute_reader
-          while reader.next 
-            if reader.values[0] && item[0] == value
+          while reader.next! 
+            if reader.values[0] && reader.values[0] == value
               result = true
               break
             end

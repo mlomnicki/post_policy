@@ -25,7 +25,7 @@ begin
     end
   end.parse!
 
-  Logger.info( "Starting PostPolicy #{PostPolicy::VERSION::STRING}"
+  Logger.info "Starting PostPolicy #{PostPolicy::VERSION::STRING}"
   PostPolicy::Config.load_from_file( options[:config] )
   PostPolicy::Protocol.new.start!
 rescue

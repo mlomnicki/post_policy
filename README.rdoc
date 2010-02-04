@@ -13,9 +13,17 @@ PostPolicy is built on top of eventmachine, event-driven network library used fo
 
 == USAGE 
 
-Configure postpolicy in /etc/postpolicy.yml
-
 Read http://www.postfix.org/SMTPD_POLICY_README.html
+
+Configure postpolicy in /etc/postpolicy.yml or use new DSL 
+
+  rule do
+    sender { format.value "bad_spammer@spam.com" }
+    recipient { format.regex /$boss/ }
+    action "REJECT"
+  end
+
+Of course you may create as many rules as you want
 
 append to your master.cf
 

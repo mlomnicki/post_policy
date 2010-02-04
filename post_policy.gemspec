@@ -18,9 +18,11 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    "CHANGELOG",
+    ".gitignore",
+     "CHANGELOG",
      "MIT-LICENSE",
      "README.rdoc",
+     "Rakefile",
      "VERSION",
      "bin/postpolicy.rb",
      "dbconfig.yml",
@@ -44,6 +46,7 @@ Gem::Specification.new do |s|
      "lib/postpolicy/rule.rb",
      "lib/postpolicy/server.rb",
      "lib/postpolicy/version.rb",
+     "post_policy.gemspec",
      "postpolicy.yml",
      "spec/access_manager_spec.rb",
      "spec/acl_spec.rb",
